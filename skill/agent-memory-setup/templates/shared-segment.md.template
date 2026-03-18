@@ -1,0 +1,18 @@
+---
+segment_id: __ULID__
+host_id: __HOST__
+agent_id: __AGENT__
+session_id: __SESSION__
+created_at: __UTC_ISO__
+entry_count: 1
+content_hash: __SHA256__
+---
+
+## Notes
+- 
+
+## Candidate durable facts
+- 
+
+## Candidate learnings
+- 

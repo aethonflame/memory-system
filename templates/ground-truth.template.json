@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "description": "Ground truth queries for memory system evaluation. Each query should be answerable from MEMORY.md or daily notes.",
+  "queries": [
+    {
+      "id": "q01",
+      "query": "What is Justin's current job?",
+      "expected_keywords": ["Production Engineer", "Marshall Wace", "Singapore"],
+      "source": "MEMORY.md"
+    },
+    {
+      "id": "q02",
+      "query": "What is Isabelle's Telegram ID?",
+      "expected_keywords": ["253665114"],
+      "source": "agents/isabelle/MEMORY.md"
+    },
+    {
+      "id": "q03",
+      "query": "What is the status of ChatScale?",
+      "expected_keywords": ["Phase", "credentials", "blocked"],
+      "source": "MEMORY.md"
+    },
+    {
+      "id": "q04",
+      "query": "What machine does Aethon run on?",
+      "expected_keywords": ["Mac mini"],
+      "source": "MEMORY.md"
+    },
+    {
+      "id": "q05",
+      "query": "What is Justin's education background?",
+      "expected_keywords": ["Warwick", "Computer Science", "First-Class"],
+      "source": "MEMORY.md"
+    },
+    {
+      "id": "q06",
+      "query": "What coding agent does Aethon use?",
+      "expected_keywords": ["Claude Code", "dangerously-skip-permissions", "GSD"],
+      "source": "MEMORY.md"
+    },
+    {
+      "id": "q07",
+      "query": "What is the Gambit project?",
+      "expected_keywords": ["Unreal Engine", "tactical RPG", "Jaison"],
+      "source": "MEMORY.md"
+    },
+    {
+      "id": "q08",
+      "query": "What is the aethon-vault?",
+      "expected_keywords": ["identity", "keychain", "encrypted", "SOUL.md"],
+      "source": "MEMORY.md"
+    },
+    {
+      "id": "q09",
+      "query": "When is Justin and Isabelle's engagement party?",
+      "expected_keywords": ["21", "March", "2026", "Atout"],
+      "source": "agents/isabelle/MEMORY.md"
+    },
+    {
+      "id": "q10",
+      "query": "What is Justin's GitHub username?",
+      "expected_keywords": ["aethonflame"],
+      "source": "MEMORY.md"
+    },
+    {
+      "id": "q11",
+      "query": "What Telegram groups does Aethon participate in?",
+      "expected_keywords": ["-5287514665", "Game Dev", "Jaison"],
+      "source": "MEMORY.md"
+    },
+    {
+      "id": "q12",
+      "query": "What databases does Aethon use locally?",
+      "expected_keywords": ["PostgreSQL", "accounting", "mission_control", "chatscale"],
+      "source": "MEMORY.md"
+    },
+    {
+      "id": "q13",
+      "query": "What is the comfort signature / session greeting?",
+      "expected_keywords": ["tilde", "~"],
+      "source": "MEMORY.md"
+    },
+    {
+      "id": "q14",
+      "query": "What is mission-control?",
+      "expected_keywords": ["dashboard", "Tasks", "Next.js", "Postgres"],
+      "source": "MEMORY.md"
+    },
+    {
+      "id": "q15",
+      "query": "What is Justin's previous job before Marshall Wace?",
+      "expected_keywords": ["Goldman Sachs", "Singapore"],
+      "source": "MEMORY.md"
+    },
+    {
+      "id": "q16",
+      "query": "What is Jaison's Telegram ID?",
+      "expected_keywords": ["618156167"],
+      "source": "agents/jaison/MEMORY.md"
+    },
+    {
+      "id": "q17",
+      "query": "What happened with the OpenClaw API key?",
+      "expected_keywords": ["exposed", "rotated", "2026-03-15"],
+      "source": "MEMORY.md"
+    },
+    {
+      "id": "q18",
+      "query": "What is the accounting-migration project?",
+      "expected_keywords": ["bank", "statement", "FastAPI", "complete"],
+      "source": "MEMORY.md"
+    },
+    {
+      "id": "q19",
+      "query": "What are Justin's preferences around autonomy?",
+      "expected_keywords": ["autonomous", "permission", "agency"],
+      "source": "MEMORY.md"
+    },
+    {
+      "id": "q20",
+      "query": "What is the heartbeat interval?",
+      "expected_keywords": ["15m", "15 minutes"],
+      "source": "MEMORY.md"
+    }
+  ]
+}

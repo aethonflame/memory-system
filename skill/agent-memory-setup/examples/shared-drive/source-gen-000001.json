@@ -1,0 +1,11 @@
+{
+  "generation": "000001",
+  "consolidator_host": "macmini-main",
+  "published_at": "2026-03-18T08:30:00Z",
+  "source_segment_ids": ["01HQEXAMPLESEGMENT"],
+  "outputs": [
+    "memory/2026-03-18.md",
+    "MEMORY.md",
+    "LEARNINGS.md"
+  ]
+}
