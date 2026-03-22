@@ -71,3 +71,4 @@ Canonical files are single-writer only.
 - `references/ground-truth-guide.md`
 - `references/program-md-guide.md`
 - `references/shared-drive-multi-agent-design.md`
+- `references/memory-org-standards.md` — naming conventions, directory structure, content tiers, when to create new sections
