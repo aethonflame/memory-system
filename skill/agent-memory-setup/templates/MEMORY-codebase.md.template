@@ -1,0 +1,96 @@
+# MEMORY.md — Codebase Memory
+# Curated facts only. Never write here directly during tasks.
+# Updated by the consolidation program.
+# Target: ≤ 200 lines. Hard cap: 400 lines.
+#
+# Structure: Six-Vector Codebase Memory
+# Same 6-vector structure as personal memory, relabelled for codebase context.
+# See references/RETRIEVAL.md for how to query this file at retrieval time.
+
+---
+
+## 1. Project Overview
+_What this is, who built it, why it exists, key stakeholders._
+
+<!--
+Examples:
+- **Name:** Internal Pricing Service
+- **Stack:** Python 3.12, FastAPI, Redis, PostgreSQL 16
+- **Purpose:** Calculate and expose pricing rules for downstream billing systems
+- **Repo:** github.com/acme/pricing-service (private)
+- **Owner:** Priya (product), Daniel (infra), Alex (backend lead)
+- **Started:** 2024-Q3 | **Status:** production
+-->
+
+
+---
+
+## 2. Architecture Decisions
+_Patterns we follow, things we avoid, key technical choices and their rationale._
+
+<!--
+Examples:
+- **Pricing rules are versioned and immutable once published** — rollback by activating an older version
+- **Redis is cache only; canonical state is always Postgres** — no Redis-first writes
+- **All DB migrations require dry-run output before apply** — prevents schema accidents
+- **Never use ORM for complex queries** — raw SQL with typed result sets
+- **API versioning:** URL-path versioned (/v1/, /v2/) — header versioning rejected (complexity)
+-->
+
+
+---
+
+## 3. Milestones
+_Phases completed, major refactors, deployments, handovers._
+
+<!--
+Examples:
+- **2024-Q3:** Initial pricing engine + REST API — shipped to staging
+- **2024-Q4:** Redis caching layer added — reduced p99 latency from 800ms → 45ms
+- **2025-02:** v2 API launched — v1 deprecated (sunset 2025-08)
+- **2025-06:** Handed over to Daniel for infra ownership; Alex moved to new project
+-->
+
+
+---
+
+## 4. Current State
+_What's live, what's broken, what's pending. Every entry must carry an `as of` date._
+
+<!--
+Format: **[fact]** _(as of YYYY-MM-DD)_
+Examples:
+- **v2 API in production, v1 still serving traffic (sunset in 2 months)** _(as of 2025-06-01)_
+- **Known bug: bulk pricing endpoint times out for >500 SKUs** _(as of 2025-06-15)_
+- **Pending: migrate from Redis 6 → Redis 7 (blocked on infra approval)** _(as of 2025-06-20)_
+- **CI: GitHub Actions, all green** _(as of 2025-07-01)_
+-->
+
+
+---
+
+## 5. Decision Changes
+_When we reversed a decision, why. Never delete these — they are the change log._
+
+<!--
+Format: **[new decision]** _(as of YYYY-MM-DD, supersedes: [old decision])_
+Examples:
+- **Switched to URL-path API versioning** _(as of 2025-01-10, supersedes: header-based versioning — rejected for client complexity)_
+- **Redis now cache-only; removed Redis-first write pattern** _(as of 2024-11-05, supersedes: dual-write approach — caused consistency bugs)_
+- **Migrated from SQLAlchemy ORM to raw SQL** _(as of 2025-03-12, supersedes: ORM-first approach — performance and debugging issues)_
+-->
+
+
+---
+
+## 6. Agent Notes
+_What the coding agent has learned about this codebase: gotchas, non-obvious behaviour, setup quirks._
+
+<!--
+Examples:
+- **Always run `make migrate-dry` before `make migrate` — team rule, no exceptions**
+- **Test suite requires PRICING_TEST_DB env var; falls back to 'pricing_test' (may not exist)**
+- **The `rules_engine/` module is the oldest code — minimal tests, treat carefully**
+- **Local dev: `docker-compose up` starts all deps; `make dev` runs the app with hot-reload**
+- **Deployment: PRs auto-deploy to staging; prod deploy requires manual approval in GitHub Actions**
+-->

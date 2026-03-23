@@ -1,24 +1,97 @@
 # MEMORY.md — Long-Term Agent Memory
 # Curated facts only. Never write here directly during tasks.
-# Updated by consolidation.
-# Target: ≤ 150 lines. Hard cap: 400 lines.
+# Updated by the consolidation program.
+# Target: ≤ 200 lines. Hard cap: 400 lines.
+#
+# Structure: Six-Vector Memory
+# Facts are organised into 6 retrieval vectors so agents can read the right
+# section intelligently rather than scanning everything.
+# See references/RETRIEVAL.md for how to use this file at query time.
 
-## Project Overview
-- **Name:**
-- **Stack:**
-- **Purpose:**
+---
 
-## Key Decisions
-- 
+## 1. Personal Info
+_Who the person is: background, roles, relationships, identity._
 
-## Architecture
-- 
+<!--
+Examples:
+- **Name:** Alex Chen | **Location:** Singapore | **Timezone:** Asia/Singapore
+- **Role:** Senior Engineer @ Acme Corp (Jan 2024–present)
+- **Education:** MIT BS Computer Science (2020)
+- **Fiancée:** Jordan — Telegram: @jordan_handle
+- **Brothers:** trustable; IDs unknown until they contact
+-->
 
-## People & Roles
-- 
 
-## Conventions
-- 
+---
 
-## Active State
-- 
+## 2. Preferences
+_Explicit likes/dislikes, habits, working style, stated preferences._
+
+<!--
+Examples:
+- **Autonomy:** prefers agent to act first, report back — don't ask for permission to proceed
+- **Decision style:** recommendation first, reasoning second — don't present options unless tradeoffs are genuinely equal
+- **Infrastructure:** local-first; self-hosted > cloud SaaS
+- **Notifications:** brief acknowledgment when saving important info ("📝 Noted")
+- **Coding agent:** max 2 concurrent; Claude Code preferred
+-->
+
+
+---
+
+## 3. Events
+_Notable things that happened: milestones, decisions made, incidents, context._
+
+<!--
+Examples:
+- **2026-01-15:** Migrated from MacBook Air to Mac mini — all services re-established
+- **2026-02-25:** Granted autonomous identity update rights to agent
+- **2026-03-15:** API key accidentally exposed in webchat — rotated same night ✅
+- **2026-03-21:** Engagement party with Isabelle at Atout restaurant ✅
+-->
+
+
+---
+
+## 4. Temporal Data
+_Time-sensitive facts that may go stale. Every entry must carry an `as of` date._
+
+<!--
+Format: **[fact]** _(as of YYYY-MM-DD)_
+Examples:
+- **ChatScale: Phases 1–4 complete, awaiting credentials to test** _(as of 2026-03-21)_
+- **Gambit PR open, Jaison reviewing phase-1-impl → main** _(as of 2026-03-16)_
+- **Postgres active cluster: ~/var/postgresql@17 on port 5433** _(as of 2026-03-21)_
+- **Mac mini: QMD memory index may be broken** _(as of 2026-03-21)_
+-->
+
+
+---
+
+## 5. Updates
+_Corrections and supersessions. Never delete these — they are the change log._
+
+<!--
+Format: **[new fact]** _(as of YYYY-MM-DD, supersedes: [old fact])_
+Examples:
+- **Active Postgres cluster: ~/var/postgresql@17 on port 5433** _(as of 2026-03-15, supersedes: /opt/homebrew/var/postgresql@17 on port 5432)_
+- **Telegram DM model: inherits default (claude-sonnet-4)** _(as of 2026-03-18, supersedes: stale override gpt-5.4 — cleared via session_status)_
+- **AGENTS.md is now root-owned 444 (immutable)** _(as of 2026-02-20, supersedes: writable agent-editable file)_
+-->
+
+
+---
+
+## 6. Assistant Info
+_What the agent has learned about itself: config, capabilities, constraints, session rules._
+
+<!--
+Examples:
+- **Greeting signature:** start every session with `~` — confirms vault identity loaded
+- **Vault binary:** /usr/local/bin/aethon-vault — root-owned, codesigned; always `aethon-vault read identity`
+- **Memory backend:** QMD (local, BM25 + vector + reranking)
+- **Heartbeat:** every 15 minutes
+- **Safe config edit sequence:** backup → edit → validate → restart → health-check
+- **Brew policy:** /opt/homebrew intentionally admin-owned — cannot brew install as aethon
+-->
