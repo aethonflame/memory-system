@@ -28,8 +28,9 @@ Without a memory pattern, important things stay trapped in the conversation:
 `memory-system` turns that into files and routines an agent can actually use:
 - **daily logs** for raw notes
 - **LEARNINGS.md** for distilled rules from mistakes
-- **MEMORY.md** for curated long-term facts
-- **nightly consolidation** to promote what matters and prune what doesn't
+- **MEMORY.md** for curated long-term facts — structured into six extraction vectors
+- **nightly consolidation** to promote what matters, detect stale facts, and log supersessions
+- **agentic retrieval** so the agent knows exactly which section to read for any question type
 - **evaluation** so memory quality can be measured instead of assumed
 
 ---
@@ -201,10 +202,45 @@ Treat the skill packaging flow as a distribution artifact, not the main project.
 
 ---
 
+## Six-Vector Memory Structure
+
+`MEMORY.md` is divided into six sections. Every fact goes into exactly one:
+
+| # | Section | What goes here |
+|---|---------|----------------|
+| 1 | **Personal Info** | Identity, background, roles, relationships |
+| 2 | **Preferences** | Explicit likes/dislikes, working style, habits |
+| 3 | **Events** | Milestones, decisions, things that happened |
+| 4 | **Temporal Data** | Time-sensitive facts with `as of YYYY-MM-DD` markers |
+| 5 | **Updates** | Superseded facts — never deleted, always logged |
+| 6 | **Assistant Info** | What the agent has learned about itself and its config |
+
+For **codebase mode**, the same structure uses different labels:
+Project Overview → Architecture Decisions → Milestones → Current State → Decision Changes → Agent Notes
+
+### Stale fact detection
+When the consolidation agent finds a fact that contradicts an existing one, it:
+1. Moves the old fact to an `Updates` entry: `**new fact** _(as of YYYY-MM-DD, supersedes: old fact)_`
+2. Writes the new fact in the correct vector section
+3. Never silently overwrites — the update trail is permanent
+
+### Agentic retrieval (no vector DB needed)
+See `references/RETRIEVAL.md` for the full guide. The three-path approach:
+- **Path 1 (direct facts)** → Personal Info / Preferences
+- **Path 2 (context/implications)** → Events
+- **Path 3 (temporal reconstruction)** → Temporal Data + Updates (trace supersession chains)
+
+This replaces fuzzy keyword search with targeted section reads.
+
+---
+
 ## Design principles
 
 - Raw runtime capture and curated long-term memory are different jobs
 - `MEMORY.md` is curated; daily logs are append-only
+- Every fact has a home — six-vector structure eliminates ambiguity about where to write or read
+- Stale facts are logged, not silently overwritten — the update trail matters
+- Agentic retrieval beats vector search for temporal, multi-session, contradictory data
 - `LEARNINGS.md` compounds improvement from mistakes
 - Consolidation and promotion happen on a cadence, not inline with task work
 - Shared-drive safety comes from append-only raw writes + single-writer publication
