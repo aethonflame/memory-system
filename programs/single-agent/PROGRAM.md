@@ -62,6 +62,15 @@ For **codebase mode**, the sections are relabelled but same structure:
 
 ## Step-by-Step Process
 
+### Step 0: Check for session ingestion notes
+Before processing daily notes, check if `memory/session-ingestion-YYYY-MM-DD.md` exists for today (using today's actual date).
+
+If the file exists, treat it as additional input alongside the regular daily notes in Step 1 — extract facts from it using the same six-vector logic. This file is written by the session ingestion cron (see `~/code/memory-system/programs/session-ingestion/PROGRAM.md`) and contains memory-worthy facts extracted from recent conversation sessions earlier in the day.
+
+If the file does not exist, continue to Step 1 normally.
+
+> **Note on today's daily note:** The session ingestion cron also writes to `memory/YYYY-MM-DD.md` (the standard daily note). Both that file and any separate `session-ingestion-YYYY-MM-DD.md` file should be read in Step 1. The ingestion cron marks its blocks clearly with `## [HH:MM] Session Ingestion — AGENT_ID (N h window)` headers so you can identify them.
+
 ### Step 1: Read recent daily notes
 Read the last 7 days of `memory/YYYY-MM-DD.md` files. For each fact, identify:
 - Which of the 6 vectors it belongs to
