@@ -1,0 +1,82 @@
+# MEMORY.md — {{AGENT_NAME}}
+_Last updated: {{DATE}}_
+_Agent ID: {{AGENT_ID}}_
+
+This file is the persistent memory store for {{AGENT_NAME}}. It is updated by
+the session memory ingestion cron (memory-ingest-{{AGENT_ID}}, every 2 hours).
+
+Facts are never deleted. Superseded facts are moved to **§5 Corrections**.
+Each entry is prefixed with an ISO date: `[YYYY-MM-DD]`.
+
+---
+
+## 1. Agent Identity
+
+What this agent is, its purpose, and key constraints.
+
+<!-- Examples:
+[YYYY-MM-DD] Herald is the notification and broadcast agent for Justin's OpenClaw setup.
+[YYYY-MM-DD] Primary function: monitor sources (GitHub, calendar, feeds) and surface alerts.
+[YYYY-MM-DD] Constraint: never sends external messages without explicit confirmation from Justin.
+[YYYY-MM-DD] Constraint: does not store private user data beyond what is needed for routing.
+-->
+
+## 2. Learned Preferences
+
+Patterns the agent has learned about what the user wants from it.
+
+<!-- Examples:
+[YYYY-MM-DD] Justin prefers morning digests at 08:30 SGT, not evening.
+[YYYY-MM-DD] Alerts about Isabelle's calendar should always be surfaced immediately.
+[YYYY-MM-DD] GitHub PR notifications: only surface if CI fails or review is requested.
+[YYYY-MM-DD] Tone: concise, no filler. One-sentence summary then detail on demand.
+-->
+
+## 3. Operational Events
+
+Key events that affected this agent's behaviour, configuration, or context.
+
+<!-- Examples:
+[YYYY-MM-DD] Agent first deployed and registered with OpenClaw gateway.
+[YYYY-MM-DD] GitHub webhook integration added for aethonflame/memory-system repo.
+[YYYY-MM-DD] Digest schedule changed from daily to twice-daily after Justin's request.
+[YYYY-MM-DD] Memory ingestion cron registered (memory-ingest-{{AGENT_ID}}, 0 */2 * * *).
+-->
+
+## 4. Current State
+
+Current operational status. Always include as-of date. Update when things change.
+
+<!-- Examples:
+[YYYY-MM-DD] Status: fully operational
+[YYYY-MM-DD] Active integrations: GitHub (aethonflame), Google Calendar (aethon.flame@gmail.com)
+[YYYY-MM-DD] Pending: Slack integration (not yet configured)
+[YYYY-MM-DD] Known issue: RSS feed parser occasionally misses items from low-TTL feeds
+-->
+
+## 5. Corrections
+
+Superseded facts. **Never delete entries.** Move here with a note of what replaced them.
+
+<!-- Examples:
+[YYYY-MM-DD] SUPERSEDED: Digest schedule was 08:00 SGT → changed to 08:30 SGT on [newer date]
+[YYYY-MM-DD] SUPERSEDED: Agent used GPT-4o model → migrated to claude-sonnet-4 on [newer date]
+-->
+
+## 6. Agent Config
+
+Technical configuration: tool access, cron schedules, model, channel bindings.
+
+<!-- Examples:
+[YYYY-MM-DD] Model: anthropic/claude-sonnet-4 (via OpenClaw)
+[YYYY-MM-DD] Channel bindings: telegram (Justin DM 217976152)
+[YYYY-MM-DD] Tool access: web_search, web_fetch, message (send only), exec (read-only commands)
+[YYYY-MM-DD] Cron: memory-ingest-{{AGENT_ID}} — 0 */2 * * * — session memory ingestion
+[YYYY-MM-DD] Cron: morning-digest — 30 0 * * * — daily digest to Justin's Telegram DM
+[YYYY-MM-DD] Workspace: {{WORKSPACE}}
+-->
+
+---
+
+_Memory ingestion cron: `memory-ingest-{{AGENT_ID}}` (every 2 hours)._
+_To manually trigger ingestion, send: "Run session memory ingestion for agent {{AGENT_NAME}}"_

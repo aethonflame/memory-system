@@ -1,0 +1,23 @@
+{
+  "_comment": "Add this cron job via: openclaw cron add (or let the agent's cron tool create it). Runs every 20 min to ingest recent session history into today's daily note.",
+  "_doc": "See references/session-start-trigger-design.md for rationale",
+  "name": "Session memory ingestion",
+  "agentId": "main",
+  "enabled": true,
+  "schedule": {
+    "kind": "cron",
+    "expr": "5,25,45 * * * *",
+    "tz": "Asia/Singapore"
+  },
+  "sessionTarget": "isolated",
+  "wakeMode": "now",
+  "payload": {
+    "kind": "agentTurn",
+    "message": "Read ~/code/memory-system/programs/session-ingestion/PROGRAM.md and follow it exactly.\n\nParameters:\n- AGENT_ID=main\n- WORKSPACE=/Users/aethon/clawd\n- LOOKBACK_HOURS=1\n\nThis is a session-start ingestion run. Process recent sessions, extract memory-worthy facts, write to today's daily note. When done reply INGESTION_COMPLETE followed by a one-line summary.",
+    "lightContext": true,
+    "timeoutSeconds": 120
+  },
+  "delivery": {
+    "mode": "none"
+  }
+}
