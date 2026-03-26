@@ -35,7 +35,7 @@ sessions_list(activeMinutes=LOOKBACK_HOURS*60)
 ```
 
 Filter results to sessions whose `agentId` or session key matches `AGENT_ID`.
-If no matching sessions exist in the window, **exit cleanly** — write a one-line log entry and stop.
+If no matching sessions exist in the window, **exit cleanly** — write a one-line log entry to the run log (Step 6) and stop. Do NOT write to the daily note.
 
 ---
 
@@ -130,6 +130,10 @@ If a new fact contradicts something in `MEMORY.md`:
 
 ## Step 5 — Write to Daily Note
 
+**Only write to the daily note if there are new facts to record.** If there are no new facts,
+skip the daily note entirely — the run log (Step 6) is the audit trail for empty runs.
+Do not pollute the daily note with "no facts extracted" noise.
+
 Write all queued facts to `WORKSPACE/memory/YYYY-MM-DD.md`.
 
 If the file does not exist, create it with this header:
@@ -159,12 +163,6 @@ Append a clearly marked ingestion block. Do not overwrite existing content:
 ```
 
 **Omit any vector section that has no new facts.** An empty section wastes space.
-
-If there are no new facts at all, write:
-```markdown
-## [HH:MM] Session Ingestion — AGENT_ID (LOOKBACK_HOURS h window)
-No new memory-worthy facts extracted. Sessions reviewed: N.
-```
 
 ---
 
