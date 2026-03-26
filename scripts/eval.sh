@@ -6,7 +6,7 @@
 set -euo pipefail
 
 WORKSPACE="$HOME/clawd"
-GROUND_TRUTH="$WORKSPACE/memory-system/ground-truth.json"
+GROUND_TRUTH="$HOME/code/memory-system/ground-truth.json"
 METRICS_DIR="$WORKSPACE/memory/metrics"
 DASHBOARD="$METRICS_DIR/dashboard.md"
 TODAY=$(date +%Y-%m-%d)
@@ -41,10 +41,10 @@ for i in $(seq 0 $((TOTAL - 1))); do
   QUERY_ID=$(jq -r ".queries[$i].id" "$GROUND_TRUTH")
   KEYWORDS=$(jq -r ".queries[$i].expected_keywords[]" "$GROUND_TRUTH")
 
-  # Use 'search' (BM25, no LLM download needed) for fast eval
-  # Switch to 'query' once the model is cached (~1.3GB download on first run)
+  # Use 'query' (hybrid BM25 + vectors + reranking) — all models are downloaded and cached.
+  # Falls back to 'search' (BM25 only) if query fails (e.g. model crash, timeout).
   START_S=$(date +%s)
-  QMD_OUTPUT=$("$QMD_BIN" search --json "$QUERY" 2>/dev/null || echo '{"results":[]}')
+  QMD_OUTPUT=$("$QMD_BIN" query --json "$QUERY" 2>/dev/null || "$QMD_BIN" search --json "$QUERY" 2>/dev/null || echo '[]')
   END_S=$(date +%s)
   LATENCY=$(( (END_S - START_S) * 1000 ))
   TOTAL_LATENCY=$((TOTAL_LATENCY + LATENCY))
