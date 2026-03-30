@@ -2,6 +2,36 @@
 
 A reusable memory framework for agent workspaces.
 
+The goal is simple: **stop relying on the context window as memory**.
+
+---
+
+## One-liner setup
+
+Run this inside your repo or agent workspace:
+
+```bash
+# Codebase mode (for a code repo — tracks architecture, decisions, conventions)
+bash <(curl -fsSL https://raw.githubusercontent.com/aethonflame/memory-system/main/scripts/setup.sh) --mode codebase
+
+# Single-agent mode (for a personal agent workspace)
+bash <(curl -fsSL https://raw.githubusercontent.com/aethonflame/memory-system/main/scripts/setup.sh) --mode single-agent
+
+# Interactive (asks you what mode)
+bash <(curl -fsSL https://raw.githubusercontent.com/aethonflame/memory-system/main/scripts/setup.sh)
+```
+
+Or clone first and run locally:
+
+```bash
+git clone https://github.com/aethonflame/memory-system.git /tmp/memory-system
+bash /tmp/memory-system/scripts/setup.sh --mode codebase
+```
+
+That's it. The scaffold creates `MEMORY.md`, `LEARNINGS.md`, `memory/`, and the consolidation program — ready to use immediately.
+
+---
+
 It gives an agent somewhere durable to put:
 - daily notes
 - learned rules (`LEARNINGS.md`)
@@ -9,8 +39,6 @@ It gives an agent somewhere durable to put:
 - consolidation logic
 - evaluation queries
 - shared-drive patterns for multi-agent setups
-
-The goal is simple: **stop relying on the context window as memory**.
 
 ---
 
